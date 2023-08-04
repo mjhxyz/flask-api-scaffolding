@@ -1,5 +1,6 @@
 from app.api.common.error import APIException
 
+
 def Success(data=None):
     return APIException.ok(data).to_dict()
 
@@ -27,6 +28,12 @@ class TokenError(Base):
     error_code = 2002
     data = None
     message = 'Token错误'
+
+
+class TokenExpiredError(Base):
+    error_code = 2003
+    data = None
+    message = 'Token过期'
 
 
 class LoginError(Base):

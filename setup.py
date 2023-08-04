@@ -9,6 +9,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'Flask==2.2.5',
+        'PyJWT==2.8.0'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
