@@ -10,7 +10,26 @@ def register_blueprint(app: Flask):
 
 
 def register_error_handler(app: Flask):
-    pass
+    @app.errorhandler(Exception)
+    def framework_error(e):
+        from app.api.common.error import APIException
+        from app.api.common.resp import ServerError, NotFoundError
+
+        if isinstance(e, APIException):
+            return e
+        elif isinstance(e, HTTPException):
+            code = e.code
+            msg = e.description
+            error_code = 3000
+            if code == 404:
+                return NotFoundError()
+            return APIException(error_code, msg, None)
+
+        # 未知错误
+        if app.config['DEBUG']:
+            # TODO 记录日志
+            raise e
+        return ServerError()
 
 
 def register_plugin(app: Flask):
