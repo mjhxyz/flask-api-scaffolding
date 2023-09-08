@@ -11,10 +11,14 @@ api.register_blueprint(router, url_prefix='/router')
 
 def get_endpoints():
     """获取所有路由信息"""
-    endpoints = {}
+    endpoints = []
     for rule in current_app.url_map.iter_rules():
-        endpoints[rule.rule] = (
-            current_app.view_functions[rule.endpoint].__doc__ or ""
+        endpoints.append(
+            dict(
+                path=rule.rule,
+                methods=list(rule.methods),
+                desc=current_app.view_functions[rule.endpoint].__doc__
+            )
         )
     return endpoints
 

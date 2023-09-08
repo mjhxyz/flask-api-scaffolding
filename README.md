@@ -101,16 +101,71 @@ Content-Type: application/json
 Content-Length: 426
 Connection: close
 
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.7.16
+Date: Fri, 08 Sep 2023 16:37:23 GMT
+Content-Type: application/json
+Content-Length: 1106
+Connection: close
+
 {
   "code": 1000,
-  "data": {
-    "/basic/router/list": "获取项目路由信息",
-    "/static/<path:filename>": "",
-    "/v1/test": "v1 test 测试路由",
-    "/v1/test_not_found": "v1 返回 404 测试路由",
-    "/v1/test_token": "v1 生成token检查token 测试路由",
-    "/v2/test": "v2 测试路由"
-  },
+  "data": [
+    {
+      "desc": null,
+      "methods": [
+        "HEAD",
+        "OPTIONS",
+        "GET"
+      ],
+      "path": "/static/<path:filename>"
+    },
+    {
+      "desc": "v1 test 测试路由",
+      "methods": [
+        "HEAD",
+        "OPTIONS",
+        "GET"
+      ],
+      "path": "/v1/test"
+    },
+    {
+      "desc": "v1 返回 404 测试路由",
+      "methods": [
+        "HEAD",
+        "OPTIONS",
+        "GET"
+      ],
+      "path": "/v1/test_not_found"
+    },
+    {
+      "desc": "v1 生成token检查token 测试路由",
+      "methods": [
+        "HEAD",
+        "OPTIONS",
+        "GET"
+      ],
+      "path": "/v1/test_token"
+    },
+    {
+      "desc": "v2 测试路由",
+      "methods": [
+        "HEAD",
+        "OPTIONS",
+        "GET"
+      ],
+      "path": "/v2/test"
+    },
+    {
+      "desc": "获取项目路由信息",
+      "methods": [
+        "HEAD",
+        "OPTIONS",
+        "GET"
+      ],
+      "path": "/basic/router/list"
+    }
+  ],
   "message": ""
 }
 ```
@@ -126,7 +181,7 @@ TODO
 
 ```json
 {
-    "code": 0,
+    "code": 1000,
     "message": "成功",
     "data": {}
 }
@@ -134,9 +189,9 @@ TODO
 
 ```json
 {
-    "code": 0,
-    "message": "有问题",
-    "data": {}
+    "code": 2002,
+    "message": "Token错误",
+    "data": null
 }
 ```
 
