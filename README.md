@@ -1,6 +1,6 @@
 # flask-api-scaffolding
 
-flask api 项目手脚架 自用
+flask api 项目手脚架 自用 (Mysql连接版)
 
 - [flask-api-scaffolding](#flask-api-scaffolding)
   - [项目结构](#项目结构)
