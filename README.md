@@ -16,7 +16,36 @@ TODO
 
 ## 安装方法
 
-TODO
+要求 `python3.7` 以上的版本
+
+1. pip 安装依赖
+
+```bash
+pip install -r requirements.txt
+```
+
+2. 启动项目
+
+```bash
+python app.py
+```
+
+3. 检查项目是否成功运行
+
+开启一个新的终端
+```bash
+curl -i http://127.0.0.1:5000
+
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.7.16
+Date: Fri, 08 Sep 2023 14:19:51 GMT
+Content-Type: application/json;charset=utf-8
+Content-Length: 73
+Connection: close
+
+{"code": 2005, "message": "\u8d44\u6e90\u672a\u627e\u5230", "data": null}
+```
+
 
 ## 部署方法
 
