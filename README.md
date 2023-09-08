@@ -94,12 +94,6 @@ Connection: close
 ```bash
 echo -en "$(curl -H "X-Basic-Key: 000000" -i http://127.0.0.1:5000/basic/router/list)"
 
-HTTP/1.1 200 OK
-Server: Werkzeug/2.2.3 Python/3.7.16
-Date: Fri, 08 Sep 2023 16:15:40 GMT
-Content-Type: application/json
-Content-Length: 426
-Connection: close
 
 HTTP/1.1 200 OK
 Server: Werkzeug/2.2.3 Python/3.7.16
