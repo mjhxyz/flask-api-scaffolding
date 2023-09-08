@@ -54,6 +54,12 @@ class ClientError(Base):
     message = '资源已存在'
 
 
+class BasicAuthError(Base):
+    error_code = 2006
+    data = None
+    message = 'Basic 鉴权失败'
+
+
 class ServerError(Base):
     error_code = 3000
     data = None

@@ -12,7 +12,36 @@ flask api 项目手脚架 自用
 
 ## 项目结构
 
-TODO
+```bash
+.
+├── app
+│   ├── api
+│   │   ├── common
+│   │   │   ├── error.py
+│   │   │   ├── __init__.py
+│   │   │   └── resp.py
+│   │   ├── __init__.py
+│   │   ├── v1
+│   │   │   ├── __init__.py
+│   │   │   └── test.py
+│   │   └── v2
+│   │       ├── __init__.py
+│   │       └── test.py
+│   ├── config
+│   │   ├── __init__.py
+│   │   ├── secure.py
+│   │   └── setting.py
+│   ├── __init__.py
+│   ├── utils
+│   │   └── token.py
+│   └── wsgi.py
+├── app.py
+├── LICENSE
+├── README.md
+├── requirements.txt
+└── setup.py
+```
+
 
 ## 安装方法
 
@@ -34,16 +63,56 @@ python app.py
 
 开启一个新的终端
 ```bash
-curl -i http://127.0.0.1:5000
+echo -en "$(curl -i http://127.0.0.1:5000)"
 
 HTTP/1.1 200 OK
 Server: Werkzeug/2.2.3 Python/3.7.16
-Date: Fri, 08 Sep 2023 14:19:51 GMT
+Date: Fri, 08 Sep 2023 16:13:47 GMT
 Content-Type: application/json;charset=utf-8
 Content-Length: 73
 Connection: close
 
-{"code": 2005, "message": "\u8d44\u6e90\u672a\u627e\u5230", "data": null}
+{"code": 2005, "message": "资源未找到", "data": null}
+```
+```bash
+curl -i http://127.0.0.1:5000/v1/test
+
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.7.16
+Date: Fri, 08 Sep 2023 14:22:24 GMT
+Content-Type: application/json
+Content-Length: 60
+Connection: close
+
+{
+  "code": 1000,
+  "data": "this is v1",
+  "message": ""
+}
+```
+
+```bash
+echo -en "$(curl -H "X-Basic-Key: 000000" -i http://127.0.0.1:5000/basic/router/list)"
+
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.7.16
+Date: Fri, 08 Sep 2023 16:15:40 GMT
+Content-Type: application/json
+Content-Length: 426
+Connection: close
+
+{
+  "code": 1000,
+  "data": {
+    "/basic/router/list": "获取项目路由信息",
+    "/static/<path:filename>": "",
+    "/v1/test": "v1 test 测试路由",
+    "/v1/test_not_found": "v1 返回 404 测试路由",
+    "/v1/test_token": "v1 生成token检查token 测试路由",
+    "/v2/test": "v2 测试路由"
+  },
+  "message": ""
+}
 ```
 
 
@@ -83,6 +152,7 @@ TODO
 | 2004 | 用户或密码错误             |
 | 2005 | 资源未找到                 |
 | 2006 | 资源已存在                 |
+| 2007 | Basic 鉴权失败             |
 | 3000 | 服务器内部错误             |
 | -    | 其他的可以自行按照业务添加 |
 
