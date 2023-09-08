@@ -16,6 +16,10 @@ flask api 项目手脚架 自用
 .
 ├── app
 │   ├── api
+│   │   ├── basic
+│   │   │   ├── __init__.py
+│   │   │   ├── router.py
+│   │   │   └── utils.py
 │   │   ├── common
 │   │   │   ├── error.py
 │   │   │   ├── __init__.py
@@ -33,6 +37,7 @@ flask api 项目手脚架 自用
 │   │   └── setting.py
 │   ├── __init__.py
 │   ├── utils
+│   │   ├── md5.py
 │   │   └── token.py
 │   └── wsgi.py
 ├── app.py
