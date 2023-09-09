@@ -9,7 +9,8 @@ setup(
     packages=find_packages(),
     install_requires=[
         'Flask==2.2.5',
-        'PyJWT==2.8.0'
+        'PyJWT==2.8.0',
+        'mysql-connector-python==8.0.33'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',

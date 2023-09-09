@@ -1,8 +1,5 @@
-from flask import Response
-import typing as t
+from flask import current_app
 from werkzeug.exceptions import HTTPException
-
-import json
 
 
 class APIException(HTTPException):
@@ -26,7 +23,8 @@ class APIException(HTTPException):
             message=self.message,
             data=self.data
         )
-        return json.dumps(body)
+        # return json.dumps(body)
+        current_app.json.dumps(body)
 
     def get_headers(
         self, environ=None,

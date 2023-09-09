@@ -35,7 +35,15 @@ def register_error_handler(app: Flask):
 
 
 def register_plugin(app: Flask):
-    pass
+    # mysql 数据库
+    from app.db.mysql_utils import db
+    db.init_app(app)
+
+
+def register_coustom_mod(app: Flask):
+    # 注册自定义模块
+    from app.api.common.json_codec import MyJSONEncoder
+    app.json_encoder = MyJSONEncoder
 
 
 def create_app():
@@ -47,5 +55,6 @@ def create_app():
     register_blueprint(app)
     register_error_handler(app)
     register_plugin(app)
+    register_coustom_mod(app)
 
     return app
