@@ -28,8 +28,8 @@ def register_error_handler(app: Flask):
             return APIException(error_code, msg, None)
 
         # 未知错误
+        app.logger.exception(e)
         if app.config['DEBUG']:
-            # TODO 记录日志
             raise e
         return ServerError()
 
@@ -46,6 +46,12 @@ def register_coustom_mod(app: Flask):
     app.json_encoder = MyJSONEncoder
 
 
+def register_logger(app: Flask):
+    """注册日志规则"""
+    from app.utils.logger import file_logger
+    file_logger.init_app(app)
+
+
 def create_app():
     app = Flask(__name__)
 
@@ -56,5 +62,6 @@ def create_app():
     register_error_handler(app)
     register_plugin(app)
     register_coustom_mod(app)
+    register_logger(app)
 
     return app

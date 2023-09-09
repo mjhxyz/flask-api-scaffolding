@@ -2,10 +2,13 @@ from . import api
 from app.api.common.resp import Success, NotFoundError
 from app.utils import token
 
+from flask import current_app
+
 
 @api.get('/test')
 def test():
     """v1 test 测试路由"""
+    current_app.logger.info('v1 test is invoked')
     return Success('this is v1')
 
 
