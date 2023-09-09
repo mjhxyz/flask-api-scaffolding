@@ -23,18 +23,26 @@ flask api 项目手脚架 自用 (Mysql连接版)
 │   │   ├── common
 │   │   │   ├── error.py
 │   │   │   ├── __init__.py
+│   │   │   ├── json_codec.py
 │   │   │   └── resp.py
 │   │   ├── __init__.py
 │   │   ├── v1
 │   │   │   ├── __init__.py
+│   │   │   ├── student.py
 │   │   │   └── test.py
 │   │   └── v2
 │   │       ├── __init__.py
 │   │       └── test.py
+│   ├── assets
+│   │   └── sql
+│   │       └── test.sql
 │   ├── config
 │   │   ├── __init__.py
 │   │   ├── secure.py
 │   │   └── setting.py
+│   ├── db
+│   │   ├── __init__.py
+│   │   └── mysql_utils.py
 │   ├── __init__.py
 │   ├── utils
 │   │   ├── md5.py
@@ -52,127 +60,27 @@ flask api 项目手脚架 自用 (Mysql连接版)
 
 要求 `python3.7` 以上的版本
 
-1. pip 安装依赖
+基本按照方法同 master 分支
 
-```bash
-pip install -r requirements.txt
-```
+不过, 启动之前需要配置 Mysql 数据库连接
 
-2. 启动项目
-
-```bash
-python app.py
-```
-
-3. 检查项目是否成功运行
-
-开启一个新的终端
-```bash
-echo -en "$(curl -i http://127.0.0.1:5000)"
-
-HTTP/1.1 200 OK
-Server: Werkzeug/2.2.3 Python/3.7.16
-Date: Fri, 08 Sep 2023 16:13:47 GMT
-Content-Type: application/json;charset=utf-8
-Content-Length: 73
-Connection: close
-
-{"code": 2005, "message": "资源未找到", "data": null}
-```
-```bash
-curl -i http://127.0.0.1:5000/v1/test
-
-HTTP/1.1 200 OK
-Server: Werkzeug/2.2.3 Python/3.7.16
-Date: Fri, 08 Sep 2023 14:22:24 GMT
-Content-Type: application/json
-Content-Length: 60
-Connection: close
-
-{
-  "code": 1000,
-  "data": "this is v1",
-  "message": ""
-}
-```
-
-```bash
-echo -en "$(curl -H "X-Basic-Key: 000000" -i http://127.0.0.1:5000/basic/router/list)"
+文件 `app/config/secure.py` 中进行配置, 并且 `assets/sql` 目录下有一个 `test.sql` 文件, 用于初始化数据库
 
 
-HTTP/1.1 200 OK
-Server: Werkzeug/2.2.3 Python/3.7.16
-Date: Fri, 08 Sep 2023 16:37:23 GMT
-Content-Type: application/json
-Content-Length: 1106
-Connection: close
-
-{
-  "code": 1000,
-  "data": [
-    {
-      "desc": null,
-      "methods": [
-        "HEAD",
-        "OPTIONS",
-        "GET"
-      ],
-      "path": "/static/<path:filename>"
-    },
-    {
-      "desc": "v1 test 测试路由",
-      "methods": [
-        "HEAD",
-        "OPTIONS",
-        "GET"
-      ],
-      "path": "/v1/test"
-    },
-    {
-      "desc": "v1 返回 404 测试路由",
-      "methods": [
-        "HEAD",
-        "OPTIONS",
-        "GET"
-      ],
-      "path": "/v1/test_not_found"
-    },
-    {
-      "desc": "v1 生成token检查token 测试路由",
-      "methods": [
-        "HEAD",
-        "OPTIONS",
-        "GET"
-      ],
-      "path": "/v1/test_token"
-    },
-    {
-      "desc": "v2 测试路由",
-      "methods": [
-        "HEAD",
-        "OPTIONS",
-        "GET"
-      ],
-      "path": "/v2/test"
-    },
-    {
-      "desc": "获取项目路由信息",
-      "methods": [
-        "HEAD",
-        "OPTIONS",
-        "GET"
-      ],
-      "path": "/basic/router/list"
-    }
-  ],
-  "message": ""
-}
+```python
+# Mysql config
+APP_MYSQL_HOST = '192.168.60.100'
+APP_MYSQL_PORT = 3306
+APP_MYSQL_USER = 'root'
+APP_MYSQL_PASSWORD = '000000'
+APP_MYSQL_DB = 'test'
+APP_MYSQL_POOL_SIZE = 1
 ```
 
 
 ## 部署方法
 
-TODO
+同 master 分支
 
 ## 统一返回格式
 
