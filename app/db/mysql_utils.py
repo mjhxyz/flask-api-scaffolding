@@ -1,3 +1,4 @@
+from pypika import MySQLQuery as Query
 from contextlib import contextmanager
 
 import mysql.connector
@@ -21,6 +22,19 @@ class FlaskMysql:
         try:
             conn = self.get_conn()
             yield conn
+        finally:
+            self.close_conn(conn)
+
+    @contextmanager
+    def transaction(self):
+        try:
+            conn = self.get_conn()
+            conn.start_transaction()
+            yield conn
+            conn.commit()
+        except Exception as e:
+            conn.rollback()
+            raise e
         finally:
             self.close_conn(conn)
 

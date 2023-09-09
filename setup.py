@@ -10,7 +10,8 @@ setup(
     install_requires=[
         'Flask==2.2.5',
         'PyJWT==2.8.0',
-        'mysql-connector-python==8.0.33'
+        'mysql-connector-python==8.0.33',
+        'pypika==0.48.9',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
