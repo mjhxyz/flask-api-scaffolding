@@ -15,7 +15,7 @@ def register_error_handler(app: Flask):
     @app.errorhandler(Exception)
     def framework_error(e):
         from app.api.common.error import APIException
-        from app.api.common.resp import ServerError, NotFoundError
+        from app.api.common.resp import ServerError, NotFoundError, UnsupportedMethod
 
         if isinstance(e, APIException):
             return e
@@ -25,6 +25,8 @@ def register_error_handler(app: Flask):
             error_code = 3000
             if code == 404:
                 return NotFoundError()
+            elif code == 405:
+                return UnsupportedMethod()
             return APIException(error_code, msg, None)
 
         # 未知错误

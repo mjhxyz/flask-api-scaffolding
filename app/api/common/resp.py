@@ -55,9 +55,15 @@ class ClientError(Base):
 
 
 class BasicAuthError(Base):
-    error_code = 2006
+    error_code = 2007
     data = None
     message = 'Basic 鉴权失败'
+
+
+class UnsupportedMethod(Base):
+    error_code = 2008
+    data = None
+    message = '不支持的请求方法'
 
 
 class ServerError(Base):
