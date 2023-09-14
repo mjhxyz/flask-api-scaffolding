@@ -35,7 +35,8 @@ def register_error_handler(app: Flask):
 
 
 def register_plugin(app: Flask):
-    pass
+    from flask_cors import CORS
+    CORS(app, supports_credentials=True)
 
 
 def register_logger(app: Flask):
