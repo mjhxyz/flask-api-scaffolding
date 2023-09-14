@@ -12,6 +12,7 @@ setup(
         'PyJWT==2.8.0',
         'mysql-connector-python==8.0.33',
         'pypika==0.48.9',
+        'Flask-Cors==4.0.0',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',

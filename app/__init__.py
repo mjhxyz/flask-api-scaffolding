@@ -35,6 +35,8 @@ def register_error_handler(app: Flask):
 
 
 def register_plugin(app: Flask):
+    from flask_cors import CORS
+    CORS(app, supports_credentials=True)
     # mysql 数据库
     from app.db.mysql_utils import db
     db.init_app(app)
